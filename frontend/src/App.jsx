@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom"
 import Home from "./pages/Home/Home"
 import Login from "./pages/Auth/Login"
 import SignUp from "./pages/Auth/SignUp"
+import MoodInsights from "./pages/MoodInsights/MoodInsights"
 import PrivateRoute from "./components/PrivateRoute"
 
 const App = () => {
@@ -12,6 +13,7 @@ const App = () => {
         <Routes>
           <Route element={<PrivateRoute />}>
             <Route path="/" exact element={<Home />} />
+            <Route path="/mood-insights" exact element={<MoodInsights />} />
           </Route>
 
           <Route path="/login" exact element={<Login />} />

@@ -35,23 +35,23 @@ app.use(
 app.use(cookieParser())
 
 // for allowing json object in req body
-app.use(express.json())
-
-app.listen(3000, () => {
-  console.log("Server is running on port 3000!")
-})
-
-app.use("/api/auth", authRoutes)
-app.use("/api/user", userRoutes)
-app.use("/api/travel-story", travelStoryRoutes)
+app.use(express.json({ limit: '50mb' }))
+app.use(express.urlencoded({ limit: '50mb', extended: true }))
 
 // server static files from the uploads and assets directory
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
 app.use("/uploads", express.static(path.join(__dirname, "uploads")))
-
 app.use("/assets", express.static(path.join(__dirname, "assets")))
+
+app.use("/api/auth", authRoutes)
+app.use("/api/user", userRoutes)
+app.use("/api/travel-story", travelStoryRoutes)
+
+app.listen(3000, () => {
+  console.log("Server is running on port 3000!")
+})
 
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500

@@ -5,6 +5,7 @@ import axiosInstance from "../utils/axiosInstance"
 import { signOutSuccess } from "../redux/slice/userSlice"
 import { useDispatch } from "react-redux"
 import SearchBar from "./SearchBar"
+import { FaChartBar } from "react-icons/fa"
 
 const Navbar = ({
   searchQuery,
@@ -57,6 +58,15 @@ const Navbar = ({
         handleSearch={handleSearch}
         onClearSearch={onClearSearch}
       />
+
+      <Link
+        to="/mood-insights"
+        className="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-blue-50 transition-colors"
+        title="View Mood Analytics"
+      >
+        <FaChartBar className="text-blue-600" size={20} />
+        <span className="text-sm font-medium text-blue-600 hidden sm:inline">Analytics</span>
+      </Link>
 
       <Profile onLogout={onLogout} />
     </div>

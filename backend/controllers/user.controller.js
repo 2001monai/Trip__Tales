@@ -25,3 +25,47 @@ export const signout = async (req, res, next) => {
     next(error)
   }
 }
+
+export const uploadProfilePicture = async (req, res, next) => {
+  try {
+    console.log("Upload request received")
+    console.log("File received:", req.file)
+    console.log("User ID:", req.user?.id)
+
+    const userId = req.user.id
+
+    if (!req.file) {
+      console.log("No file in request")
+      return next(errorHandler(400, "No file uploaded"))
+    }
+
+    const validUser = await User.findOne({ _id: userId })
+
+    if (!validUser) {
+      console.log("User not found:", userId)
+      return next(errorHandler(401, "Unauthorized"))
+    }
+
+    // File path - use full URL
+    const profilePictureUrl = `http://localhost:3000/uploads/${req.file.filename}`
+
+    console.log("Saving profile picture URL:", profilePictureUrl)
+
+    // Update user with profile picture
+    const updatedUser = await User.findByIdAndUpdate(
+      userId,
+      { profilePictureUrl },
+      { new: true }
+    )
+
+    console.log("User updated successfully")
+
+    const { password: pass, ...rest } = updatedUser._doc
+
+    res.status(200).json({ message: "Profile picture uploaded successfully", user: rest })
+  } catch (error) {
+    console.error("Upload error:", error)
+    next(error)
+  }
+}
+

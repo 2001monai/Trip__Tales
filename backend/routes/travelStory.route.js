@@ -8,14 +8,18 @@ import {
   filterTravelStories,
   getAllTravelStory,
   imageUpload,
+  videoUpload,
   searchTravelStory,
   updateIsFavourite,
+  getMoodStats,
 } from "../controllers/travelStory.controller.js"
 import upload from "../multer.js"
 
 const router = express.Router()
 
 router.post("/image-upload", upload.single("image"), imageUpload)
+
+router.post("/video-upload", upload.single("video"), videoUpload)
 
 router.delete("/delete-image", deleteImage)
 
@@ -32,5 +36,7 @@ router.put("/update-is-favourite/:id", verifyToken, updateIsFavourite)
 router.get("/search", verifyToken, searchTravelStory)
 
 router.get("/filter", verifyToken, filterTravelStories)
+
+router.get("/mood-stats", verifyToken, getMoodStats)
 
 export default router

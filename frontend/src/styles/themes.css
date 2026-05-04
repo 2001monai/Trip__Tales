@@ -1,0 +1,208 @@
+/* Theme Styles */
+
+/* Forest Theme */
+.theme-forest {
+  background: linear-gradient(135deg, #1a3a1a 0%, #2d5a2d 100%);
+  color: #f5f5f5;
+}
+
+.theme-forest .story-card {
+  background: rgba(45, 90, 45, 0.7);
+  border: 2px solid #7cb342;
+  color: #f5f5f5;
+}
+
+.theme-forest .story-title {
+  color: #7cb342;
+  font-weight: 700;
+}
+
+.theme-forest .story-text {
+  color: #e0e0e0;
+}
+
+/* Greece Theme */
+.theme-greece {
+  background: linear-gradient(135deg, #ffffff 0%, #e8f4f8 100%);
+  color: #003366;
+}
+
+.theme-greece .story-card {
+  background: rgba(255, 255, 255, 0.9);
+  border: 2px solid #0066cc;
+  color: #003366;
+  box-shadow: 0 4px 15px rgba(0, 102, 204, 0.1);
+}
+
+.theme-greece .story-title {
+  color: #0066cc;
+  font-weight: 700;
+}
+
+.theme-greece .story-text {
+  color: #334455;
+}
+
+/* Desert Theme */
+.theme-desert {
+  background: linear-gradient(135deg, #8b6914 0%, #d4a574 100%);
+  color: #fff9e6;
+}
+
+.theme-desert .story-card {
+  background: rgba(212, 165, 116, 0.8);
+  border: 2px solid #e8a76a;
+  color: #fff9e6;
+}
+
+.theme-desert .story-title {
+  color: #e8a76a;
+  font-weight: 700;
+}
+
+.theme-desert .story-text {
+  color: #fdf6e3;
+}
+
+/* Ocean Theme */
+.theme-ocean {
+  background: linear-gradient(135deg, #0a3d62 0%, #1b6ca8 100%);
+  color: #e0f7ff;
+}
+
+.theme-ocean .story-card {
+  background: rgba(27, 108, 168, 0.7);
+  border: 2px solid #48b8d4;
+  color: #e0f7ff;
+}
+
+.theme-ocean .story-title {
+  color: #48b8d4;
+  font-weight: 700;
+}
+
+.theme-ocean .story-text {
+  color: #b3e5fc;
+}
+
+/* Mountain Theme */
+.theme-mountain {
+  background: linear-gradient(135deg, #3a3a3a 0%, #6b7280 100%);
+  color: #f3f4f6;
+}
+
+.theme-mountain .story-card {
+  background: rgba(107, 114, 128, 0.7);
+  border: 2px solid #9ca3af;
+  color: #f3f4f6;
+}
+
+.theme-mountain .story-title {
+  color: #9ca3af;
+  font-weight: 700;
+}
+
+.theme-mountain .story-text {
+  color: #e5e7eb;
+}
+
+/* Urban Theme */
+.theme-urban {
+  background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+  color: #f9fafb;
+}
+
+.theme-urban .story-card {
+  background: rgba(55, 65, 81, 0.8);
+  border: 2px solid #ef4444;
+  color: #f9fafb;
+}
+
+.theme-urban .story-title {
+  color: #ef4444;
+  font-weight: 700;
+}
+
+.theme-urban .story-text {
+  color: #f3f4f6;
+}
+
+/* Tropical Theme */
+.theme-tropical {
+  background: linear-gradient(135deg, #1a4d2e 0%, #2d8659 100%);
+  color: #fff0f5;
+}
+
+.theme-tropical .story-card {
+  background: rgba(45, 134, 89, 0.8);
+  border: 2px solid #d4145a;
+  color: #fff0f5;
+}
+
+.theme-tropical .story-title {
+  color: #d4145a;
+  font-weight: 700;
+}
+
+.theme-tropical .story-text {
+  color: #fce4ec;
+}
+
+/* Hover effects for all themes */
+.theme-forest .story-card:hover,
+.theme-greece .story-card:hover,
+.theme-desert .story-card:hover,
+.theme-ocean .story-card:hover,
+.theme-mountain .story-card:hover,
+.theme-urban .story-card:hover,
+.theme-tropical .story-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease-in-out;
+}
+
+/* Profile picture styles */
+.profile-picture-container {
+  position: relative;
+  display: inline-block;
+}
+
+.profile-picture {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.profile-picture:hover {
+  transform: scale(1.05);
+}
+
+.profile-picture-upload {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: #4CAF50;
+  border: none;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 18px;
+  transition: background 0.3s ease;
+}
+
+.profile-picture-upload:hover {
+  background: #45a049;
+}
+
+.hidden-file-input {
+  display: none;
+}

@@ -12,8 +12,11 @@ import { DayPicker } from "react-day-picker"
 import moment from "moment"
 import FilterInfoTitle from "../../components/FilterInfoTitle"
 import { getEmptyCardMessage } from "../../utils/helper"
+import { useDispatch } from "react-redux"
+import { signInSuccess } from "../../redux/slice/userSlice"
 
 const Home = () => {
+  const dispatch = useDispatch()
   const [allStories, setAllStories] = useState([])
 
   const [searchQuery, setSearchQuery] = useState("")
@@ -33,6 +36,18 @@ const Home = () => {
     isShown: false,
     data: null,
   })
+
+  // Get user data
+  const getUser = async () => {
+    try {
+      const response = await axiosInstance.get("/user/get-user")
+      if (response.data) {
+        dispatch(signInSuccess(response.data))
+      }
+    } catch (error) {
+      console.log("Failed to fetch user data")
+    }
+  }
 
   // Get all travel stories
   const getAllTravelStories = async () => {
@@ -69,7 +84,14 @@ const Home = () => {
 
       if (response.data && response.data.story) {
         toast.success("Story updated successfully!")
-        getAllTravelStories()
+        // Update local state instantly instead of refetching
+        setAllStories((prevStories) =>
+          prevStories.map((story) =>
+            story._id === storyId
+              ? { ...story, isFavorite: !story.isFavorite }
+              : story
+          )
+        )
       }
     } catch (error) {
       console.log("Something went wrong. Please try again.")
@@ -90,7 +112,10 @@ const Home = () => {
 
         setOpenViewModal((prevState) => ({ ...prevState, isShown: false }))
 
-        getAllTravelStories()
+        // Update local state instantly instead of refetching
+        setAllStories((prevStories) =>
+          prevStories.filter((story) => story._id !== storyId)
+        )
       }
     } catch (error) {
       console.log("Something went wrong. Please try again.")
@@ -156,6 +181,7 @@ const Home = () => {
 
   useEffect(() => {
     getAllTravelStories()
+    getUser()
 
     return () => {}
   }, [])
@@ -187,11 +213,16 @@ const Home = () => {
                     <TravelStoryCard
                       key={item._id}
                       imageUrl={item.imageUrl}
+                      videoUrl={item.videoUrl}
                       title={item.title}
                       story={item.story}
                       date={item.visitedDate}
                       visitedLocation={item.visitedLocation}
                       isFavourite={item.isFavorite}
+                      mood={item.mood}
+                      theme={item.theme}
+                      entryType={item.entryType}
+                      journalType={item.journalType}
                       onEdit={() => handleEdit(item)}
                       onClick={() => handleViewStory(item)}
                       onFavouriteClick={() => updateIsFavourite(item)}
@@ -252,6 +283,9 @@ const Home = () => {
             setOpenAddEditModal({ isShown: false, type: "add", data: null })
           }}
           getAllTravelStories={getAllTravelStories}
+          getUser={getUser}
+          setAllStories={setAllStories}
+          allStories={allStories}
         />
       </Modal>
 
